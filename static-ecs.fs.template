@@ -1,0 +1,21 @@
+type World = {
+{{#Components}}
+    {{.}}Components: Component<{{.}}> array
+{{/Components}} }
+
+let NewWorld = {
+{{#Components}}
+    {{.}}Components = [||]
+{{/Components}} }
+
+
+{{#ValueComponents}}
+type {{Name}} = {{Name}} of {{Content}}
+{{/ValueComponents}}
+
+{{#StructComponents}}
+[<Struct>]
+type {{Name}} = {
+    //member of struct
+}
+{{/StructComponents}}
