@@ -13,28 +13,34 @@ enum Language {
     rust
 }
 
+function ConvertType($tp) {
+    $ConvertTypeTable[$tp]
+}
+
+function ConvertToNameAndType($kv) {
+    @{ Name=$kv.Key; Type=ConvertType($kv.Value) }
+}
+
 $Language = [Language]$Language
 
 $ConvertTypeTable = Get-Content -Path .\convert-type-$Language.yaml -Raw | ConvertFrom-Yaml
 
-$SystemsDifinitionFile = Get-Content -Path $Path -Raw
-
-$BaseDifinition = ConvertFrom-MustacheTemplate -Template $SystemsDifinitionFile -Values $ConvertTypeTable | ConvertFrom-Yaml
+$BaseDifinition = Get-Content -Path $Path -Raw | ConvertFrom-Yaml
 
 $Source = Get-Content -Path .\static-ecs.fs.template -Raw
 
 # echo $SystemDifinition.Components.GetType()
 
 $SystemDifinition = @{}
-$SystemDifinition.Components = $BaseDifinition.Components.Keys #[System.Collections.Generic.List[string]]::new()
+$SystemDifinition.Components = $BaseDifinition.Components.Keys
 
 $SystemDifinition.ValueComponents = $BaseDifinition.Components.GetEnumerator()
  | Where-Object { $_.Value -is [string] }
- | ForEach-Object { @{ Name=$_.Key; Content=$_.Value} }
+ | ForEach-Object { ConvertToNameAndType $_ }
 
 $SystemDifinition.StructComponents = $BaseDifinition.Components.GetEnumerator()
  | Where-Object { $_.Value -is [hashtable] }
- | ForEach-Object { @{ Name=$_.Key; Content=$_.Value} }
+ | ForEach-Object { @{ Name=$_.Key; Fields=($_.Value.GetEnumerator() | ForEach-Object { ConvertToNameAndType $_ }) } }
 
 # echo $SystemDifinition.ValueComponents
 

@@ -1,18 +1,18 @@
 Components:
-    Team: {{int}}
+    Team: int
     Input:
-        up: {{bool}}
-        down: {{bool}}
-        left: {{bool}}
-        right: {{bool}}
-        attack: {{bool}}
+        Up: bool
+        Down: bool
+        Left: bool
+        Right: bool
+        Attack: bool
     AttackAnimation:
-        isPlaying: {{bool}}
-    OtherTeamPositions: {{vector2}} {{array}}
-    MoveTarget: {{vector2}} {{option}}
-    Velocity: {{vector2}}
-    Position: {{vector2}}
-    Direction: {{float}}
+        IsPlaying: bool
+    OtherTeamPositions: vector2 array
+    MoveTarget: vector2 option
+    Velocity: vector2
+    Position: vector2
+    Direction: float
 Systems:
     - OtherTeamPositionSystem:
         Depends:

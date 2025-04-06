@@ -10,12 +10,14 @@ let NewWorld = {
 
 
 {{#ValueComponents}}
-type {{Name}} = {{Name}} of {{Content}}
+type {{Name}} = {{Name}} of {{Type}}
 {{/ValueComponents}}
 
 {{#StructComponents}}
 [<Struct>]
 type {{Name}} = {
-    //member of struct
+    {{#Fields}}
+    {{Name}}: {{Type}}
+    {{/Fields}}
 }
 {{/StructComponents}}
