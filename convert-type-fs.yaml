@@ -1,0 +1,6 @@
+bool: "bool"
+int: "int"
+float: "float32"
+vector2: "Vector2"
+array: "array"
+option: "option"

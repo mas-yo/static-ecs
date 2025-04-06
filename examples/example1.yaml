@@ -1,0 +1,57 @@
+World:
+    Components:
+        - Team: {{int}}
+        - Input:
+            up: {{bool}}
+            down: {{bool}}
+            left: {{bool}}
+            right: {{bool}}
+            attack: {{bool}}
+        - AttackAnimation:
+            isPlaying: {{bool}}
+        - OtherTeamPositions: {{vector2}} {{array}}
+        - MoveTarget: {{vector2}} {{option}}
+        - Velocity: {{vector2}}
+        - Position: {{vector2}}
+        - Direction: {{float}}
+    Systems:
+        - OtherTeamPositionSystem:
+            Depends:
+                - Team all
+                - Position all
+            Returns: OtherTeamPosition
+        - MoveTargetSystem:
+            Depends:
+                - OtherTeamPosition all
+            Returns: MoveTarget
+        - AttackAnimationSystem:
+            Depends:
+                - AttackAnimation
+                - Input
+            Returns: AttackAnimation
+        - DirectionSystemWithInput:
+            Depends:
+                - Direction
+                - Input
+            Returns: Direction
+        - DirectionSystemWithMoveTarget:
+            Depends:
+                - Direction
+                - Position
+                - MoveTarget
+            Returns: Direction
+        - VelocitySystemWithInput:
+            Depends:
+                - Input
+            Returns: Velocity
+        - VelocitySystemWithMoveTarget:
+            Depends:
+                - Position
+                - MoveTarget
+            Returns: Velocity
+        - PositionSystem:
+            Depends:
+                - Position
+                - Velocity
+            Returns:
+                Position
