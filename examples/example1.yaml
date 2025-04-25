@@ -1,18 +1,33 @@
 Components:
-    Team: int
-    Input:
-        Up: bool
-        Down: bool
-        Left: bool
-        Right: bool
-        Attack: bool
-    AttackAnimation:
-        IsPlaying: bool
-    OtherTeamPositions: vector2 array
-    MoveTarget: vector2 option
-    Velocity: vector2
-    Position: vector2
-    Direction: float
+    - Name: Team
+      Fields:
+      - Name: TeamId
+        Type: int
+    - Name: Input
+      Fields:
+        - { Name: Up, Type: bool }
+        - { Name: Down, Type: bool }
+        - { Name: Left, Type: bool }
+        - { Name: Right, Type: bool }
+        - { Name: Attack, Type: bool }
+    - Name: AttackAnimation
+      Fields:
+        - { IsPlaying: bool }
+    - Name: OtherTeamPositions
+      Fields:
+        - { Positions: vector2 array }
+    - Name: MoveTarget
+      Fields:
+        - { Target: vector2 option }
+    - Name: Velocity
+      Fields:
+        - { Velocity: vector2 }
+    - Name: Position
+      Fields:
+        - { Position: vector2 }
+    - Name: Direction
+      Fields:
+        - { Direction: float }
 Systems:
     - OtherTeamPositionSystem:
         Depends:

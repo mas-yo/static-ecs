@@ -1,11 +1,11 @@
 type World = {
 {{#Components}}
-    {{.}}Components: Component<{{.}}> array
+    {{Name}}Components: Component<{{Name}}> array
 {{/Components}} }
 
 let NewWorld = {
 {{#Components}}
-    {{.}}Components = [||]
+    {{Name}}Components = [||]
 {{/Components}} }
 
 
