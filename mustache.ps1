@@ -21,7 +21,7 @@ function ConvertToNameAndType($kv) {
     @{ Name=$kv.Key; Type=ConvertType($kv.Value) }
 }
 
-$Language = [Language]$Language
+#$Language = [Language]$Language
 
 # $ConvertTypeTable = Get-Content -Path .\convert-type-$Language.yaml -Raw | ConvertFrom-Yaml
 
@@ -29,7 +29,8 @@ $SystemDifinition = Get-Content -Path $Path -Raw | ConvertFrom-Yaml
 
 echo $SystemDifinition
 
-$Source = Get-Content -Path .\static-ecs.fs.template -Raw
+#$Source = Get-Content -Path .\static-ecs.fs.template -Raw
+$Source = Get-Content -Path .\examples\unity-ecs\static-ecs-unity-ecs.template -Raw
 
 # echo $SystemDifinition.Components.GetType()
 

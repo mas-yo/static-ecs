@@ -1,0 +1,11 @@
+
+{{#Components}}
+public struct {{Name}} : IComponentData
+{
+    {{#Fields}}
+    public {{Type}} {{Name}};
+    {{/Fields}}
+}
+
+{{/Components}}
+

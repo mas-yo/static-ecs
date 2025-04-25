@@ -15,19 +15,19 @@ Components:
         - { IsPlaying: bool }
     - Name: OtherTeamPositions
       Fields:
-        - { Positions: vector2 array }
+        - { Name: Positions, Type: vector2 array }
     - Name: MoveTarget
       Fields:
-        - { Target: vector2 option }
+        - { Name: Target, Type: vector2 option }
     - Name: Velocity
       Fields:
-        - { Velocity: vector2 }
+        - { Name: Velocity, Type: vector2 }
     - Name: Position
       Fields:
-        - { Position: vector2 }
+        - { Name: Position, Type: vector2 }
     - Name: Direction
       Fields:
-        - { Direction: float }
+        - { Name: Direction, Type: float }
 Systems:
     - OtherTeamPositionSystem:
         Depends:
